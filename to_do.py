@@ -6,4 +6,6 @@ r = requests.get(url)
 html_doc = r.text
 soup = BeautifulSoup(html_doc,'html.parser')
 a = soup.find_all(class_="pf-content")
-print (a)
+for x in a :
+	for child in x.descendants:
+		print(child)
