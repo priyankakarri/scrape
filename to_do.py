@@ -11,8 +11,9 @@ bqs = soup('blockquote')
 kids = []
 count = 0
 for x in a :
-	for item in x.descendants:
-		kids.append(item)
-for k in range(0,len(kids)):
-	if kids[k] in bqs:
-		print(k)
+	for child in x.descendants:
+		if child.name == 'blockquote':
+			topic = child.get_text()
+			print(topic)
+		else:
+			kids.append(child)
