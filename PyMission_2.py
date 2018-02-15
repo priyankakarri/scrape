@@ -9,12 +9,11 @@ soup1 = BeautifulSoup(html_doc,'html.parser')
 urls = soup1.find_all('td',{'class':'titleColumn'})
 ratings = soup1.find_all('td',{'class':'ratingColumn imdbRating'})
 for url,rating in zip(urls,ratings):
-	for rating in ratings:
-		if (float(rating.get_text()))>7.5 and (float(rating.get_text()))<8.5:
-			links.append('http://www.imdb.com'+str(url.a['href']))
+	if (float(rating.get_text()))>7.5 and (float(rating.get_text()))<8.5:
+		links.append('http://www.imdb.com'+str(url.a['href']))
 l=[]
-for link in links:
-	r2 = requests.get(link)
+for k in range(0,5):
+	r2 = requests.get(links[k])
 	html_docu = r2.text
 	soup2 = BeautifulSoup(html_docu,'html.parser')
 	a = []
